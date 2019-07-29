@@ -32,6 +32,7 @@ void quick_sort(int a[], int lo, int hi) {
 
 
 int find_kth_largest(int a[], int n, int k) {
+  k = n - k;
   int lo = 0;
   int hi = n - 1;
   while (lo < hi) {
@@ -54,6 +55,6 @@ int main() {
   }
   printf("\n");
 
-  int val = find_kth_largest(a, 6, 6);
+  int val = find_kth_largest(a, 6, 3);
   printf("val %d\n", val);
 }
