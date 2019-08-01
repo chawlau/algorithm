@@ -5,7 +5,7 @@
 using namespace std;
 
 std::vector<int> find_anagrams(std::string s, std::string p) {
-  std::vector<int> pv(26, 0), sv(26, 0), res;
+  std::vector<int> pv(26,0), sv(26,0), res;
 
   if (s.size() < p.size()) return res;
 
@@ -18,12 +18,23 @@ std::vector<int> find_anagrams(std::string s, std::string p) {
 
   for (int i = p.size(); i < s.size(); i++) {
     sv[s[i] - 'a']++;
+    sv[s[i - p.size()] - 'a']--;
+
+    if (pv == sv)
+      res.push_back(i - p.size() + 1);
   }
+
+  return res;
 }
+
 int main() {
-  std::string s = "abcdabcdefbb";
-  int ret = longest_sub_str_len(s);
-  std::cout << "min sub len " << ret << std::endl;
+  std::string s = "abcdbacdefbb";
+  std::string p = "abc";
+  std::vector<int> ret = find_anagrams(s, p);
+
+  for (auto& it : ret)
+    std::cout << " " << it;
+  std::cout << std::endl;
 }
 
 
